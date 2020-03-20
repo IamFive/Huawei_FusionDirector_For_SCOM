@@ -55,10 +55,10 @@ namespace FusionDirectorPlugin.TestClient
             var scheduler = new LimitedConcurrencyLevelTaskScheduler(1);
             taskFactory = new TaskFactory(cts.Token, TaskCreationOptions.HideScheduler, TaskContinuationOptions.HideScheduler, scheduler);
             //taskFactory = new TaskFactory(scheduler);
-            //var fusionDirector = FusionDirectorDal.Instance.GetList().First();
-            //nodePoolService = new NodePoolService(fusionDirector);
-            //enclosureService = new EnclosureService(fusionDirector);
-            //metricsService = new MetricsService(fusionDirector);
+            var fusionDirector = FusionDirectorDal.Instance.GetList().First();
+            nodePoolService = new NodePoolService(fusionDirector);
+            enclosureService = new EnclosureService(fusionDirector);
+            metricsService = new MetricsService(fusionDirector);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1321,7 +1321,7 @@ namespace FusionDirectorPlugin.TestClient
         /// <param name="e">The <see cref="System.EventArgs" /> instance containing the event data.</param>
         private async void btnMockSync_Click(object sender, EventArgs e)
         {
-            MockSyncServer();
+            await MockSyncServer();
             //MockSyncEnclosure();
             //CreateOrCloseFusionDirectorAlarm();
         }
@@ -1447,7 +1447,7 @@ namespace FusionDirectorPlugin.TestClient
             {
                 return await QueryServerDetailsById(serverId);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 var defaultServer = new Server(serverSummary);
                 defaultServer.MakeDetails(this.FusionDirectorIp);

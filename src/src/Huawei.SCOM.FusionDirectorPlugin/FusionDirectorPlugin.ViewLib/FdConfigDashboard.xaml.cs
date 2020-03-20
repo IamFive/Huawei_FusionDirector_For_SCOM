@@ -89,7 +89,7 @@ namespace FusionDirectorPlugin.ViewLib
             });
         }
 
-        public async void OnSearchFd()
+        public void OnSearchFd()
         {
             string keyword = txtSearchKeyword.Text;
             this.FdApplianceRepo.LoadAll(keyword);

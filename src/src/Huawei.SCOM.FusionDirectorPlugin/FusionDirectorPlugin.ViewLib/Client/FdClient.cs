@@ -150,7 +150,7 @@ namespace FusionDirectorPlugin.ViewLib.Client
                     ret.Message = this.GetErrorMessage(response.StatusCode);
                 }
             }
-            catch  (TaskCanceledException ex)
+            catch  (TaskCanceledException)
             {
                 ret.Message = "Connect timeout";
             }
