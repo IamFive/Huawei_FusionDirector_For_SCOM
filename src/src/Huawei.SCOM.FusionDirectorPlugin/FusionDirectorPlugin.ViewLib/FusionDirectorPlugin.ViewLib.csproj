@@ -166,9 +166,6 @@
     <Content Include="Images\Ok.svg" />
     <Content Include="Images\Unknown.svg" />
     <Content Include="Images\Warning.svg" />
-    <Content Include="lib\DotNetProjects.SVGImage.dll" />
-    <Content Include="lib\LiveCharts.dll" />
-    <Content Include="lib\LiveCharts.Wpf.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

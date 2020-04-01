@@ -730,14 +730,17 @@ namespace FusionDirectorPlugin.PackageHelper
                 var list = FusionDirectorDal.Instance.GetList();
                 foreach (var fusionDirector in list)
                 {
-                    try
+                    if (!string.IsNullOrEmpty(fusionDirector.SubscribeId))
                     {
-                        var eventService = new EventService(fusionDirector);
-                        eventService.DeleteGivenSubscriptions(fusionDirector.SubscribeId);
-                    }
-                    catch (Exception ex)
-                    {
-                        OnLog($"UnSubscribe fusionDirector:{fusionDirector.HostIP}", ex);
+                        try
+                        {
+                            var eventService = new EventService(fusionDirector);
+                            eventService.DeleteGivenSubscriptions(fusionDirector.SubscribeId);
+                        }
+                        catch (Exception ex)
+                        {
+                            OnLog($"UnSubscribe fusionDirector:{fusionDirector.HostIP}", ex);
+                        }
                     }
                 }
                 OnLog("FusionDirector cancel subcribe finish.");
@@ -886,7 +889,9 @@ namespace FusionDirectorPlugin.PackageHelper
                 PollingInterval = 3600000 * 4,
                 TempTcpPort = 40001,
                 IsEnableAlert = true,
-                ThreadCount = 2
+                ThreadCount = 2,
+                RateLimitQueueSize = 60,
+                RateLimitTimeSpan = 30
             };
             var path = $"{RunPath}\\PluginConfig.xml";
             ConfigHelper.SavePluginConfig(config, path);

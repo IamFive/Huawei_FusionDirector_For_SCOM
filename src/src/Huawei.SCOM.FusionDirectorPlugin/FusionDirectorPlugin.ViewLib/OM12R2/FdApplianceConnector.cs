@@ -41,6 +41,9 @@ namespace FusionDirectorPlugin.ViewLib.OM12R2
     /// </summary>
     public class FdApplianceConnector
     {
+
+        private const string FusionDirectUniqueIdPrefix = "FusionDirector::";
+
         #region Fields
         /// <summary>
         /// Gets the instance.
@@ -169,6 +172,7 @@ namespace FusionDirectorPlugin.ViewLib.OM12R2
 
                     var emoAppliance = new CreatableEnterpriseManagementObject(MGroup.Instance, this.FdApplianceClass);
                     var props = this.FdApplianceClass.PropertyCollection;
+                    emoAppliance[props["UniqueId"]].Value = FusionDirectUniqueIdPrefix + Guid.NewGuid().ToString("D");
                     emoAppliance[props["HostIP"]].Value = appliance.HostIP;
                     emoAppliance[props["AliasName"]].Value = appliance.AliasName;
                     emoAppliance[props["LoginAccount"]].Value = appliance.LoginAccount;
@@ -231,7 +235,7 @@ namespace FusionDirectorPlugin.ViewLib.OM12R2
                                  var client = new FdClient(appliance);
                                  var res = await client.DeleteGivenSubscriptions(appliance.SubscribeId);
                                  LogHelper.Info($"Update Fd:DeleteGivenSubscriptions:{res.Code} {res.Message}");
-                                 //取消订阅后重置订阅状态
+                                 // 取消订阅后重置订阅状态
                                  exsitObj[props["SubscribeId"]].Value = string.Empty;
                                  exsitObj[props["SubscribeStatus"]].Value = string.Empty;
                                  exsitObj[props["LatestSubscribeInfo"]].Value = string.Empty;

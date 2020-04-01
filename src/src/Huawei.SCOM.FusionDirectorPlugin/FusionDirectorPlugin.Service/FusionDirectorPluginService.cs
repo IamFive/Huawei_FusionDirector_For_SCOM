@@ -50,6 +50,7 @@ using Newtonsoft.Json;
 using FusionDirectorPlugin.Model.Event;
 using System.Net.Security;
 using Microsoft.EnterpriseManagement.Monitoring;
+using static Huawei.SCOM.ESightPlugin.Const.Constants.ESightEventeLogSource;
 
 namespace FusionDirectorPlugin.Service
 {
@@ -152,7 +153,7 @@ namespace FusionDirectorPlugin.Service
                 foreach (var x in fdList)
                 {
                     var instance = this.FindInstance(x);
-                    instance.DealNewAlarm(data);
+                    instance.DealNewAlarmAsync(data);
                 }
             }
         }
@@ -217,12 +218,24 @@ namespace FusionDirectorPlugin.Service
                         this.OnLog("IISProcess Has Exited");
                     }
                 }
+
+                // we should stop all sync instance before stop
+                StopAllFusionDirectorSyncInstance();
+
                 this.OnLog("Stop Service Success");
             }
             catch (Exception ex)
             {
                 this.OnLog("Stop Service Error：" + ex);
             }
+        }
+
+        protected void StopAllFusionDirectorSyncInstance()
+        {
+            this.SyncInstances.ForEach((instance) =>
+            {
+                instance.Close();
+            });
         }
 
         /// <summary>
@@ -296,6 +309,8 @@ namespace FusionDirectorPlugin.Service
             this.RunWebServer();
 
             this.TcpServerTask = Task.Run(() => this.CreateTcpServer());
+
+            this.InitialWindowEventLog();
 #if !DEBUG
             this.RunPolling();
 #endif
@@ -398,6 +413,20 @@ namespace FusionDirectorPlugin.Service
             catch (Exception ex)
             {
                 this.OnError("RunSync Error: ", ex);
+            }
+        }
+
+        private void InitialWindowEventLog()
+{
+            bool success = WindowEventLogHelper.CreateEventSourceIfNotExists(EVENT_SOURCE, EVENT_LOG_NAME);
+            if (!success)
+{
+                HWLogger.Service.Error($"Could not create Window EventLog Source {EVENT_SOURCE} with {EVENT_LOG_NAME}");
+                this.OnError($"Failed to create window EventLog {EVENT_LOG_NAME} with Source {EVENT_SOURCE}");
+            }
+            else
+{
+                HWLogger.Service.Info($"Create Window EventLog Source {EVENT_SOURCE} with {EVENT_LOG_NAME} successfully.");
             }
         }
 
@@ -567,10 +596,10 @@ namespace FusionDirectorPlugin.Service
         /// <exception cref="System.ArgumentOutOfRangeException"></exception>
         public void AnalysisTcpMsg(string json)
         {
+            HWLogger.NotifyRecv.Info($"Receive new TCP message: {json}");
             var tcpMessage = JsonConvert.DeserializeObject<TcpMessage<object>>(json);
             try
             {
-                HWLogger.NotifyRecv.Info($"RecieveTcpMsg. data:{json}");
                 var list = FusionDirectorDal.Instance.GetList();
                 var fusionDirector = list.FirstOrDefault(x => x.EventAuth == tcpMessage.Auth);
                 if (fusionDirector == null)
@@ -601,14 +630,14 @@ namespace FusionDirectorPlugin.Service
         private void RunReciveNewAlarm(FusionDirector fusionDirector, string json)
         {
             var tcpMessage = JsonConvert.DeserializeObject<TcpMessage<AlarmData>>(json);
-            HWLogger.GetFdNotifyLogger(fusionDirector.HostIP).Info($"Recieve new alarm:{JsonConvert.SerializeObject(tcpMessage)}");
+            HWLogger.GetFdNotifyLogger(fusionDirector.HostIP).Info($"Recieve new alarm: {JsonConvert.SerializeObject(tcpMessage)}");
             var syncInstance = this.SyncInstances.FirstOrDefault(y => y.FusionDirectorIp == fusionDirector.HostIP);
             if (syncInstance != null)
             {
                 var data = tcpMessage.Data;
                 if (data != null)
                 {
-                    syncInstance.DealNewAlarm(data);
+                    syncInstance.DealNewAlarmAsync(data);
                 }
                 else
                 {

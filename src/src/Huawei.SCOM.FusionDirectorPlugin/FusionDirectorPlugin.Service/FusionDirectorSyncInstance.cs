@@ -37,6 +37,7 @@ using FusionDirectorPlugin.Dal.Helpers;
 using FusionDirectorPlugin.Model.Event;
 using Newtonsoft.Json;
 using Timer = System.Timers.Timer;
+using FusionDirectorPlugin.Dal;
 
 namespace FusionDirectorPlugin.Service
 {
@@ -61,6 +62,8 @@ namespace FusionDirectorPlugin.Service
 
         private CancellationTokenSource cts = new CancellationTokenSource();
 
+        private Timer waitSyncTaskFinishedTimer;
+
         #endregion
 
         #region Constuctor
@@ -82,7 +85,10 @@ namespace FusionDirectorPlugin.Service
             this.metricsService = new MetricsService(fusionDirector);
             this.pluginConfig = ConfigHelper.GetPluginConfig();
             this.AlarmDatas = new Queue<AlarmData>();
-            this.RunInsertEventTask();
+            this.AlarmQueue = new Queue<AlarmData>();
+            this.StartAlarmEventProcessor();
+            // this.RunInsertEventTask();
+
             this.UpdateServerTasks = new List<UpdateTask<Server>>();
             this.UpdateEnclosureTasks = new List<UpdateTask<Enclosure>>();
             this.RunPerformanceCollectTask();
@@ -157,13 +163,13 @@ namespace FusionDirectorPlugin.Service
             logger.Sdk.Info($"[{taskId}]Start Polling Task.");
             if (!this.IsComplete)
             {
-                logger.Polling.Warn($"[{taskId}]The last task was not completed, and the task was given up.");
+                logger.Polling.Warn($"[{taskId}] The last task was not completed, and the task was given up.");
                 return;
             }
             var testResult = fusionDirectorService.TestLinkFd();
             if (!testResult.Success)
             {
-                OnPollingError($"[{taskId}]Can not connect the FusionDirector {this.FusionDirectorIp}, and the task was given up.");
+                OnPollingError($"[{taskId}] Can not connect the FusionDirector {this.FusionDirectorIp}, and the task was given up.");
                 return;
             }
             // 清除完成的任务
@@ -173,18 +179,43 @@ namespace FusionDirectorPlugin.Service
             var syncServerListTask = this.SyncServerList(taskId);
             this.taskList.Add(syncServerListTask);
 
+            WaitAndStartSyncOpenAlertsIfNeccessary();
+        }
+
+        private void WaitAndStartSyncOpenAlertsIfNeccessary()
+        {
             if (this.pluginConfig.IsEnableAlert)
             {
-                System.Timers.Timer timer = new System.Timers.Timer(1000);
-                timer.Elapsed += (sender, e) =>
+                if (waitSyncTaskFinishedTimer == null)
                 {
-                    if (this.IsComplete)
+                    // 开启一个timer来监听本次轮询任务是否执行完
+                    waitSyncTaskFinishedTimer = new Timer(3000)
                     {
-                        this.SyncAlarm();
-                        timer.Stop();
-                    }
-                };
-                timer.Start();
+                        AutoReset = false,
+                        Enabled = true,
+                    };
+
+                    waitSyncTaskFinishedTimer.Elapsed += (sender, e) =>
+                    {
+                        try
+                        {
+                            if (IsComplete)
+                            {
+                                logger.Polling.Info("All sync task has finished, sync open alarms now.");
+                                SyncFusionDirectorOpenAlarms();
+                            }
+                        }
+                        finally
+                        {
+                            if (!IsComplete)
+                            {
+                                waitSyncTaskFinishedTimer.Start(); // Restart timer for next tick's checking
+                            }
+                        }
+                    };
+                }
+
+                waitSyncTaskFinishedTimer.Start();
             }
         }
 
@@ -427,11 +458,28 @@ namespace FusionDirectorPlugin.Service
             logger.Polling.Info($"Delete FusionDirector SyncInstance");
             HWLogger.Service.Info($"Delete FusionDirector SyncInstance: {this.FusionDirectorIp}");
             this.IsRunning = false;
+
+            // we could not use subscribe id in memory directly. should reload from db.
+            if (!string.IsNullOrEmpty(FusionDirector.SubscribeId))
+            {
+                try
+                {
+                    this.eventService.DeleteGivenSubscriptions(FusionDirector.SubscribeId);
+                    FusionDirectorDal.Instance.UpdateSubscribeStatus(this.FusionDirectorIp, SubscribeStatus.NotSubscribed, "", "");
+                    logger.Polling.Info($"Unsubscribe event notification success.");
+                }
+                catch (Exception ex)
+                {
+                    FusionDirectorDal.Instance.UpdateSubscribeStatus(this.FusionDirectorIp, SubscribeStatus.Error, ex.Message, "");
+                    logger.Polling.Info(ex, $"Failed to unsubscribe event notification for fusion director: {FusionDirectorIp}");
+                }
+            }
+
             this.cts.Cancel(false);
-            this.AlarmDatas.Clear();
             this.UpdateServerTasks.Clear();
             this.UpdateEnclosureTasks.Clear();
             this.keepEventTimer.Stop();
+            this.AlarmQueue.Clear();
             this.pollingPerformanceTimer.Stop();
         }
 

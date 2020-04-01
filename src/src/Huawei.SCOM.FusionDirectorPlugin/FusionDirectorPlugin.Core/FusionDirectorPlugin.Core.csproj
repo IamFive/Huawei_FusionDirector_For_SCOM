@@ -94,6 +94,10 @@
     <Compile Include="BaseConnector.cs" />
     <Compile Include="ApplianceConnector.cs" />
     <Compile Include="Const\ApplianceConst.cs" />
+    <Compile Include="Const\EventeStatus.cs" />
+    <Compile Include="Const\EventCategory.cs" />
+    <Compile Include="Const\AlarmClearType.cs" />
+    <Compile Include="Const\EventlogSources.cs" />
     <Compile Include="Models\Appliance.cs" />
     <Compile Include="Models\ApplianceAlarm.cs" />
     <Compile Include="Models\ApplianceEvent.cs" />
@@ -104,6 +108,7 @@
     <Compile Include="Models\ServerCollection.cs" />
     <Compile Include="Models\EventCollection.cs" />
     <Compile Include="Models\EventData.cs" />
+    <Compile Include="MonitoringDeviceObject.cs" />
     <Compile Include="MonitoringEventExt.cs" />
     <Compile Include="ServerConnector.cs" />
     <Compile Include="EnclosureConnector.cs" />

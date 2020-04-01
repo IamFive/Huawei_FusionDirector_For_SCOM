@@ -1,0 +1,439 @@
+src/build/NSIS-Unicode/COPYING
+src/build/NSIS-Unicode/makensis.exe
+src/build/NSIS-Unicode/makensisw.exe
+src/build/NSIS-Unicode/NSIS.chm
+src/build/NSIS-Unicode/NSIS.exe
+src/build/NSIS-Unicode/nsisconf.nsh
+src/build/NSIS-Unicode/uninst-nsis.exe
+src/build/NSIS-Unicode/Contrib/Graphics/Checks/big.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Checks/classic-cross.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Checks/classic.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Checks/colorful.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Checks/grey-cross.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Checks/grey.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Checks/modern.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Checks/red-round.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Checks/red.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Checks/simple-round.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Checks/simple-round2.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Checks/simple.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/nsis-r.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/nsis.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/nsis3-branding-r.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/nsis3-branding.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/nsis3-grey-right.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/nsis3-grey.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/nsis3-metro-right.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/nsis3-metro.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/nsis3-vintage-right.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/nsis3-vintage.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/orange-nsis.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/orange-r-nsis.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/orange-r.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/orange-uninstall-nsis.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/orange-uninstall-r-nsis.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/orange-uninstall-r.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/orange-uninstall.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/orange.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Header/win.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/arrow-install.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/arrow-uninstall.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/arrow2-install.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/arrow2-uninstall.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/box-install.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/box-uninstall.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/classic-install.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/classic-uninstall.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/llama-blue.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/llama-grey.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/modern-install-blue-full.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/modern-install-blue.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/modern-install-colorful.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/modern-install-full.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/modern-install.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/modern-uninstall-blue-full.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/modern-uninstall-blue.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/modern-uninstall-colorful.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/modern-uninstall-full.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/modern-uninstall.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/nsis-menu.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/nsis1-install.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/nsis1-uninstall.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/nsis3-install-alt.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/nsis3-install.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/nsis3-uninstall.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/orange-install-nsis.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/orange-install.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/orange-uninstall-nsis.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/orange-uninstall.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/pixel-install.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/pixel-uninstall.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/win-install.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Icons/win-uninstall.ico
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/arrow.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/llama.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/nsis.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/nsis3-branding.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/nsis3-grey.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/nsis3-metro.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/nsis3-vintage.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/nullsoft.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/orange-nsis.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/orange-uninstall-nsis.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/orange-uninstall.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/orange.bmp
+src/build/NSIS-Unicode/Contrib/Graphics/Wizard/win.bmp
+src/build/NSIS-Unicode/Contrib/Language files/Afrikaans.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Afrikaans.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Albanian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Albanian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Arabic.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Arabic.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Armenian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Armenian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Asturian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Asturian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Basque.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Basque.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Belarusian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Belarusian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Bosnian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Bosnian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Breton.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Breton.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Bulgarian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Bulgarian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Catalan.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Catalan.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Corsican.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Corsican.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Croatian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Croatian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Czech.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Czech.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Danish.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Danish.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Dutch.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Dutch.nsh
+src/build/NSIS-Unicode/Contrib/Language files/English.nlf
+src/build/NSIS-Unicode/Contrib/Language files/English.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Esperanto.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Esperanto.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Estonian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Estonian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Farsi.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Farsi.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Finnish.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Finnish.nsh
+src/build/NSIS-Unicode/Contrib/Language files/French.nlf
+src/build/NSIS-Unicode/Contrib/Language files/French.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Galician.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Galician.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Georgian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Georgian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/German.nlf
+src/build/NSIS-Unicode/Contrib/Language files/German.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Greek.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Greek.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Hebrew.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Hebrew.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Hindi.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Hindi.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Hungarian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Hungarian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Icelandic.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Icelandic.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Indonesian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Indonesian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Irish.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Irish.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Italian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Italian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Japanese.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Japanese.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Korean.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Korean.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Kurdish.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Kurdish.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Latvian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Latvian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Lithuanian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Lithuanian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Luxembourgish.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Luxembourgish.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Macedonian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Macedonian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Malay.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Malay.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Mongolian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Mongolian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Norwegian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Norwegian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/NorwegianNynorsk.nlf
+src/build/NSIS-Unicode/Contrib/Language files/NorwegianNynorsk.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Pashto.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Pashto.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Polish.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Polish.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Portuguese.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Portuguese.nsh
+src/build/NSIS-Unicode/Contrib/Language files/PortugueseBR.nlf
+src/build/NSIS-Unicode/Contrib/Language files/PortugueseBR.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Romanian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Romanian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Russian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Russian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/ScotsGaelic.nlf
+src/build/NSIS-Unicode/Contrib/Language files/ScotsGaelic.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Serbian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Serbian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/SerbianLatin.nlf
+src/build/NSIS-Unicode/Contrib/Language files/SerbianLatin.nsh
+src/build/NSIS-Unicode/Contrib/Language files/SimpChinese.nlf
+src/build/NSIS-Unicode/Contrib/Language files/SimpChinese.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Slovak.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Slovak.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Slovenian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Slovenian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Spanish.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Spanish.nsh
+src/build/NSIS-Unicode/Contrib/Language files/SpanishInternational.nlf
+src/build/NSIS-Unicode/Contrib/Language files/SpanishInternational.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Swedish.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Swedish.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Tatar.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Tatar.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Thai.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Thai.nsh
+src/build/NSIS-Unicode/Contrib/Language files/TradChinese.nlf
+src/build/NSIS-Unicode/Contrib/Language files/TradChinese.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Turkish.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Turkish.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Ukrainian.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Ukrainian.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Uzbek.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Uzbek.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Vietnamese.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Vietnamese.nsh
+src/build/NSIS-Unicode/Contrib/Language files/Welsh.nlf
+src/build/NSIS-Unicode/Contrib/Language files/Welsh.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI/ioSpecial.ini
+src/build/NSIS-Unicode/Contrib/Modern UI/System.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/Deprecated.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/Interface.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/Localization.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/MUI2.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/Pages.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/Pages/Components.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/Pages/Directory.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/Pages/Finish.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/Pages/InstallFiles.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/Pages/License.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/Pages/StartMenu.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/Pages/UninstallConfirm.nsh
+src/build/NSIS-Unicode/Contrib/Modern UI 2/Pages/Welcome.nsh
+src/build/NSIS-Unicode/Contrib/UIs/default.exe
+src/build/NSIS-Unicode/Contrib/UIs/modern_headerbmp.exe
+src/build/NSIS-Unicode/Contrib/UIs/modern_headerbmpr.exe
+src/build/NSIS-Unicode/Contrib/UIs/modern_nodesc.exe
+src/build/NSIS-Unicode/Contrib/UIs/modern_smalldesc.exe
+src/build/NSIS-Unicode/Contrib/UIs/modern.exe
+src/build/NSIS-Unicode/Contrib/UIs/sdbarker_tiny.exe
+src/build/NSIS-Unicode/Contrib/zip2exe/Base.nsh
+src/build/NSIS-Unicode/Contrib/zip2exe/Classic.nsh
+src/build/NSIS-Unicode/Contrib/zip2exe/Modern.nsh
+src/build/NSIS-Unicode/Docs/AdvSplash/advsplash.txt
+src/build/NSIS-Unicode/Docs/Banner/Readme.txt
+src/build/NSIS-Unicode/Docs/BgImage/BgImage.txt
+src/build/NSIS-Unicode/Docs/Dialer/Dialer.txt
+src/build/NSIS-Unicode/Docs/InstallOptions/Changelog.txt
+src/build/NSIS-Unicode/Docs/InstallOptions/Readme.html
+src/build/NSIS-Unicode/Docs/Math/Math.txt
+src/build/NSIS-Unicode/Docs/Modern UI/Changelog.txt
+src/build/NSIS-Unicode/Docs/Modern UI/License.txt
+src/build/NSIS-Unicode/Docs/Modern UI/Readme.html
+src/build/NSIS-Unicode/Docs/Modern UI/images/closed.gif
+src/build/NSIS-Unicode/Docs/Modern UI/images/header.gif
+src/build/NSIS-Unicode/Docs/Modern UI/images/open.gif
+src/build/NSIS-Unicode/Docs/Modern UI/images/screen1.png
+src/build/NSIS-Unicode/Docs/Modern UI/images/screen2.png
+src/build/NSIS-Unicode/Docs/Modern UI 2/License.txt
+src/build/NSIS-Unicode/Docs/Modern UI 2/Readme.html
+src/build/NSIS-Unicode/Docs/Modern UI 2/images/closed.gif
+src/build/NSIS-Unicode/Docs/Modern UI 2/images/header.gif
+src/build/NSIS-Unicode/Docs/Modern UI 2/images/open.gif
+src/build/NSIS-Unicode/Docs/Modern UI 2/images/screen1.png
+src/build/NSIS-Unicode/Docs/Modern UI 2/images/screen2.png
+src/build/NSIS-Unicode/Docs/MultiUser/Readme.html
+src/build/NSIS-Unicode/Docs/NSISdl/License.txt
+src/build/NSIS-Unicode/Docs/NSISdl/ReadMe.txt
+src/build/NSIS-Unicode/Docs/Splash/splash.txt
+src/build/NSIS-Unicode/Docs/StartMenu/Readme.txt
+src/build/NSIS-Unicode/Docs/StrFunc/StrFunc.txt
+src/build/NSIS-Unicode/Docs/System/System.html
+src/build/NSIS-Unicode/Docs/System/WhatsNew.txt
+src/build/NSIS-Unicode/Docs/VPatch/Readme.html
+src/build/NSIS-Unicode/Docs/makensisw/License.txt
+src/build/NSIS-Unicode/Docs/makensisw/Readme.txt
+src/build/NSIS-Unicode/Docs/nsDialogs/Readme.html
+src/build/NSIS-Unicode/Docs/nsExec/nsExec.txt
+src/build/NSIS-Unicode/Example/nsProcessTest.nsi
+src/build/NSIS-Unicode/Examples/bigtest.nsi
+src/build/NSIS-Unicode/Examples/example1.nsi
+src/build/NSIS-Unicode/Examples/example2.nsi
+src/build/NSIS-Unicode/Examples/FileFunc.ini
+src/build/NSIS-Unicode/Examples/FileFunc.nsi
+src/build/NSIS-Unicode/Examples/FileFuncTest.nsi
+src/build/NSIS-Unicode/Examples/gfx.nsi
+src/build/NSIS-Unicode/Examples/languages.nsi
+src/build/NSIS-Unicode/Examples/Library.nsi
+src/build/NSIS-Unicode/Examples/LogicLib.nsi
+src/build/NSIS-Unicode/Examples/makensis.nsi
+src/build/NSIS-Unicode/Examples/Memento.nsi
+src/build/NSIS-Unicode/Examples/NSISMenu.nsi
+src/build/NSIS-Unicode/Examples/one-section.nsi
+src/build/NSIS-Unicode/Examples/primes.nsi
+src/build/NSIS-Unicode/Examples/rtest.nsi
+src/build/NSIS-Unicode/Examples/silent.nsi
+src/build/NSIS-Unicode/Examples/StrFunc.nsi
+src/build/NSIS-Unicode/Examples/TextFunc.ini
+src/build/NSIS-Unicode/Examples/TextFunc.nsi
+src/build/NSIS-Unicode/Examples/TextFuncTest.nsi
+src/build/NSIS-Unicode/Examples/unicode.nsi
+src/build/NSIS-Unicode/Examples/UserVars.nsi
+src/build/NSIS-Unicode/Examples/VersionInfo.nsi
+src/build/NSIS-Unicode/Examples/viewhtml.nsi
+src/build/NSIS-Unicode/Examples/waplugin.nsi
+src/build/NSIS-Unicode/Examples/WordFunc.ini
+src/build/NSIS-Unicode/Examples/WordFunc.nsi
+src/build/NSIS-Unicode/Examples/WordFuncTest.nsi
+src/build/NSIS-Unicode/Examples/AdvSplash/Example.nsi
+src/build/NSIS-Unicode/Examples/Banner/Example.nsi
+src/build/NSIS-Unicode/Examples/BgImage/Example.nsi
+src/build/NSIS-Unicode/Examples/InstallOptions/test.ini
+src/build/NSIS-Unicode/Examples/InstallOptions/test.nsi
+src/build/NSIS-Unicode/Examples/InstallOptions/testimgs.ini
+src/build/NSIS-Unicode/Examples/InstallOptions/testimgs.nsi
+src/build/NSIS-Unicode/Examples/InstallOptions/testlink.ini
+src/build/NSIS-Unicode/Examples/InstallOptions/testlink.nsi
+src/build/NSIS-Unicode/Examples/InstallOptions/testnotify.ini
+src/build/NSIS-Unicode/Examples/InstallOptions/testnotify.nsi
+src/build/NSIS-Unicode/Examples/Math/math.nsi
+src/build/NSIS-Unicode/Examples/Math/mathtest.ini
+src/build/NSIS-Unicode/Examples/Math/mathtest.nsi
+src/build/NSIS-Unicode/Examples/Math/mathtest.txt
+src/build/NSIS-Unicode/Examples/Modern UI/Basic.nsi
+src/build/NSIS-Unicode/Examples/Modern UI/HeaderBitmap.nsi
+src/build/NSIS-Unicode/Examples/Modern UI/MultiLanguage.nsi
+src/build/NSIS-Unicode/Examples/Modern UI/StartMenu.nsi
+src/build/NSIS-Unicode/Examples/Modern UI/WelcomeFinish.nsi
+src/build/NSIS-Unicode/Examples/Plugin/exdll_with_unit.dpr
+src/build/NSIS-Unicode/Examples/Plugin/exdll-vs2008.sln
+src/build/NSIS-Unicode/Examples/Plugin/exdll-vs2008.vcproj
+src/build/NSIS-Unicode/Examples/Plugin/exdll.c
+src/build/NSIS-Unicode/Examples/Plugin/exdll.dpr
+src/build/NSIS-Unicode/Examples/Plugin/exdll.dsp
+src/build/NSIS-Unicode/Examples/Plugin/exdll.dsw
+src/build/NSIS-Unicode/Examples/Plugin/extdll.inc
+src/build/NSIS-Unicode/Examples/Plugin/nsis.pas
+src/build/NSIS-Unicode/Examples/Plugin/nsis/api.h
+src/build/NSIS-Unicode/Examples/Plugin/nsis/nsis_tchar.h
+src/build/NSIS-Unicode/Examples/Plugin/nsis/pluginapi-x86-ansi.lib
+src/build/NSIS-Unicode/Examples/Plugin/nsis/pluginapi-x86-unicode.lib
+src/build/NSIS-Unicode/Examples/Plugin/nsis/pluginapi.h
+src/build/NSIS-Unicode/Examples/Splash/Example.nsi
+src/build/NSIS-Unicode/Examples/StartMenu/Example.nsi
+src/build/NSIS-Unicode/Examples/System/Resource.dll
+src/build/NSIS-Unicode/Examples/System/SysFunc.nsh
+src/build/NSIS-Unicode/Examples/System/System.nsh
+src/build/NSIS-Unicode/Examples/System/System.nsi
+src/build/NSIS-Unicode/Examples/UserInfo/UserInfo.nsi
+src/build/NSIS-Unicode/Examples/VPatch/example.nsi
+src/build/NSIS-Unicode/Examples/VPatch/newfile.txt
+src/build/NSIS-Unicode/Examples/VPatch/oldfile.txt
+src/build/NSIS-Unicode/Examples/VPatch/patch.pat
+src/build/NSIS-Unicode/Examples/nsDialogs/example.nsi
+src/build/NSIS-Unicode/Examples/nsDialogs/InstallOptions.nsi
+src/build/NSIS-Unicode/Examples/nsDialogs/timer.nsi
+src/build/NSIS-Unicode/Examples/nsDialogs/welcome.nsi
+src/build/NSIS-Unicode/Examples/nsExec/test.nsi
+src/build/NSIS-Unicode/Include/Colors.nsh
+src/build/NSIS-Unicode/Include/FileFunc.nsh
+src/build/NSIS-Unicode/Include/InstallOptions.nsh
+src/build/NSIS-Unicode/Include/LangFile.nsh
+src/build/NSIS-Unicode/Include/Library.nsh
+src/build/NSIS-Unicode/Include/LogicLib.nsh
+src/build/NSIS-Unicode/Include/Memento.nsh
+src/build/NSIS-Unicode/Include/MUI.nsh
+src/build/NSIS-Unicode/Include/MUI2.nsh
+src/build/NSIS-Unicode/Include/MultiUser.nsh
+src/build/NSIS-Unicode/Include/nsDialogs.nsh
+src/build/NSIS-Unicode/Include/nsProcess.nsh
+src/build/NSIS-Unicode/Include/Ports.nsh
+src/build/NSIS-Unicode/Include/Sections.nsh
+src/build/NSIS-Unicode/Include/StrFunc.nsh
+src/build/NSIS-Unicode/Include/TextFunc.nsh
+src/build/NSIS-Unicode/Include/UpgradeDLL.nsh
+src/build/NSIS-Unicode/Include/Util.nsh
+src/build/NSIS-Unicode/Include/VB6RunTime.nsh
+src/build/NSIS-Unicode/Include/VPatchLib.nsh
+src/build/NSIS-Unicode/Include/WinCore.nsh
+src/build/NSIS-Unicode/Include/WinMessages.nsh
+src/build/NSIS-Unicode/Include/WinVer.nsh
+src/build/NSIS-Unicode/Include/WordFunc.nsh
+src/build/NSIS-Unicode/Include/x64.nsh
+src/build/NSIS-Unicode/Include/Win/COM.nsh
+src/build/NSIS-Unicode/Include/Win/Propkey.nsh
+src/build/NSIS-Unicode/Include/Win/WinDef.nsh
+src/build/NSIS-Unicode/Include/Win/WinError.nsh
+src/build/NSIS-Unicode/Include/Win/WinNT.nsh
+src/build/NSIS-Unicode/Include/Win/WinUser.nsh
+src/build/NSIS-Unicode/Plugins/x86-ansi/advsplash.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/Banner.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/BgImage.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/Dialer.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/InstallOptions.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/LangDLL.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/Math.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/nsDialogs.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/nsExec.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/nsisdl.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/nsProcess.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/nsProcessW.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/splash.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/StartMenu.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/System.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/TypeLib.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/UserInfo.dll
+src/build/NSIS-Unicode/Plugins/x86-ansi/VPatch.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/advsplash.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/Banner.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/BgImage.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/Dialer.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/InstallOptions.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/LangDLL.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/Math.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/nsDialogs.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/nsExec.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/nsisdl.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/nsProcess.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/nsProcessW.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/splash.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/StartMenu.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/System.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/TypeLib.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/UserInfo.dll
+src/build/NSIS-Unicode/Plugins/x86-unicode/VPatch.dll
+src/build/NSIS-Unicode/Stubs/bzip2_solid-x86-ansi
+src/build/NSIS-Unicode/Stubs/bzip2_solid-x86-unicode
+src/build/NSIS-Unicode/Stubs/bzip2-x86-ansi
+src/build/NSIS-Unicode/Stubs/bzip2-x86-unicode
+src/build/NSIS-Unicode/Stubs/lzma_solid-x86-ansi
+src/build/NSIS-Unicode/Stubs/lzma_solid-x86-unicode
+src/build/NSIS-Unicode/Stubs/lzma-x86-ansi
+src/build/NSIS-Unicode/Stubs/lzma-x86-unicode
+src/build/NSIS-Unicode/Stubs/uninst
+src/build/NSIS-Unicode/Stubs/zlib_solid-x86-ansi
+src/build/NSIS-Unicode/Stubs/zlib_solid-x86-unicode
+src/build/NSIS-Unicode/Stubs/zlib-x86-ansi
+src/build/NSIS-Unicode/Stubs/zlib-x86-unicode

@@ -145,6 +145,14 @@ namespace FusionDirectorPlugin.Dal.Model
         /// <value>The latest connect information.</value>
         [JsonProperty(PropertyName = "latestConnectInfo")]
         public string LatestConnectInfo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the unique id of fd.
+        /// </summary>
+        /// <value>The the unique id of fd.</value>
+        [JsonProperty(PropertyName = "uniqueId")]
+        public string UniqueId { get; set; }
+
         #endregion
 
         public string Summary()

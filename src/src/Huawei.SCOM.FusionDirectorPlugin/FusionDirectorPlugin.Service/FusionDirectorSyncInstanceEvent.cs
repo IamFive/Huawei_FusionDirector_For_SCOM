@@ -136,7 +136,7 @@ namespace FusionDirectorPlugin.Service
                     Protocol = "Redfish",
                     Oem = new Oem
                     {
-                        Huawei = new Huawei
+                        Huawei = new Model.Huawei
                         {
                             UserName = this.FusionDirector.EventUserName,
                             Resource = "plugin",
@@ -145,7 +145,7 @@ namespace FusionDirectorPlugin.Service
                     }
                 });
                 var subscribeId = result.ToString().Split('/').Last();
-                logger.Subscribe.Info($"Subscribe Success:{result}");
+                logger.Subscribe.Info($"Subscribe Success: {result}");
                 //订阅后更新实体
                 FusionDirectorDal.Instance.UpdateSubscribeStatus(this.FusionDirectorIp, SubscribeStatus.Success, "success", subscribeId);
             }
@@ -247,12 +247,8 @@ namespace FusionDirectorPlugin.Service
         /// 处理推送过来的告警
         /// </summary>
         /// <param name="data">The data.</param>
-        public void DealNewAlarm(AlarmData data)
+        public void DealNewAlarmAsync(AlarmData data)
         {
-            if (data.EventCategory == "BMC" || data.EventCategory == "Enclosure")
-            {
-                this.AlarmDatas.Enqueue(data);
-            }
             switch (data.EventCategory)
             {
                 case "Enclosure":
@@ -265,6 +261,10 @@ namespace FusionDirectorPlugin.Service
                     break;
             }
 
+            // TODO(turnbig) how to mock this part?
+            // var info = await eventService.GetEventsInfoAsync(data.Sn.ToString());
+            // this.SubmitNewAlarm(new AlarmData(info));
+            this.SubmitNewAlarm(data);
         }
 
         /// <summary>
@@ -495,12 +495,12 @@ namespace FusionDirectorPlugin.Service
                 Enabled = true,
                 AutoReset = true,
             };
-            this.keepEventTimer.Elapsed += (s, e) =>
+            this.keepEventTimer.Elapsed += async (s, e) =>
             {
                 logger.Polling.Info($"keepAlive:Subscribe again.");
                 if (this.pluginConfig.IsEnableAlert)
                 {
-                    this.Subscribe();
+                    await this.Subscribe();
                 }
             };
             this.keepEventTimer.Start();

@@ -101,11 +101,11 @@ namespace FusionDirectorPlugin.ViewLib
             int selectedIndex = Grid.SelectedIndex;
             if (Grid.SelectedIndex > -1 && selectedIndex < this.FdApplianceRepo.FilteredItems.Count)
             {
+                FdAppliance appliance = this.FdApplianceRepo.FilteredItems[Grid.SelectedIndex];
                 MessageBoxResult confirmResult = MessageBox.Show("Are you sure you want to delete the fusionDirector?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (confirmResult == MessageBoxResult.Yes)
                 {
-                    FdAppliance appliance = this.FdApplianceRepo.FilteredItems[Grid.SelectedIndex];
                     this.ActionResult = await this.FdApplianceRepo.Delete(appliance);
                     if (!this.ActionResult.Success)
                     {

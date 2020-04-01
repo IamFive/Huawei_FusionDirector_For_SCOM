@@ -23,6 +23,7 @@
 // ***********************************************************************
 
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Threading;
@@ -188,7 +189,24 @@ namespace FusionDirectorPlugin.Core
                 return null;
                 //throw new Exception($"cannot find unionId :'{unionId}'");
             }
-            return reader.First();
+           return reader.First();
+        }
+
+        /// <summary>
+        /// Get monitoring device object by "SCOM Object Id"
+        /// </summary>
+        /// <param name="objectId">SCOM Object Id</param>
+        /// <returns></returns>
+        public static MonitoringDeviceObject GetDeviceByObjectId(ManagementPackClass mpClass, string objectId)
+        {
+            var criteria = new MonitoringObjectCriteria($"UnionId = '{objectId}'", mpClass);
+            var objectReader = MGroup.Instance.EntityObjects.GetObjectReader<MonitoringObject>(criteria, ObjectQueryOptions.Default);
+            if (!objectReader.Any())
+            {
+                return null;
+            }
+
+            return new MonitoringDeviceObject(objectId, mpClass, objectReader.FirstOrDefault());
         }
 
         /// <summary>
@@ -271,7 +289,7 @@ namespace FusionDirectorPlugin.Core
                         {
                             obj.InsertCustomMonitoringEvent(eventData.ToCustomMonitoringEvent());
                             logger.Info($"{logPre}Insert new Event.");
-                            if (eventData.LevelId == 1 || eventData.LevelId == 2)
+                            if (eventData.LevelId == EventLogEntryType.Error || eventData.LevelId == EventLogEntryType.Warning)
                             {
                                 if (eventData.AlarmData.Status == "Cleared")//如果告警是清除状态
                                 {
@@ -309,7 +327,7 @@ namespace FusionDirectorPlugin.Core
                                 alertToUpdate.CustomField4 = eventData.AlarmData.ResourceId;
                                 alertToUpdate.CustomField5 = eventData.AlarmData.Sn.ToString();
                                 alertToUpdate.CustomField7 = eventData.AlarmData.Additional;
-                                alertToUpdate.CustomField8 = eventData.AlarmData.Suggstion;
+                                alertToUpdate.CustomField8 = eventData.AlarmData.Suggestion;
                                 alertToUpdate.CustomField8 = eventData.AlarmData.OccurTime;
                                 alertToUpdate.CustomField9 = eventData.AlarmData.PossibleCause;
                                 alertToUpdate.CustomField10 = eventData.AlarmData.Effect;
@@ -343,7 +361,7 @@ namespace FusionDirectorPlugin.Core
                         break;
                     case "2":
                         #region 清除告警
-                        if (eventData.LevelId == 1 || eventData.LevelId == 2)//清除告警
+                        if (eventData.LevelId == EventLogEntryType.Error || eventData.LevelId == EventLogEntryType.Warning)//清除告警
                         {
                             var alertHistory = obj.GetMonitoringAlerts();
                             var alertToClose = alertHistory.FirstOrDefault(x => x.CustomField5 == sn);
@@ -367,7 +385,7 @@ namespace FusionDirectorPlugin.Core
                         break;
                     case "3"://肯定是事件
                         #region 插入事件
-                        if (eventData.LevelId == 4)
+                        if (eventData.LevelId == EventLogEntryType.Information)
                         {
                             var existAlarmDatas = obj.GetMonitoringEvents().Select(x => x.GetAlarmData()).ToList();
                             //插入事件

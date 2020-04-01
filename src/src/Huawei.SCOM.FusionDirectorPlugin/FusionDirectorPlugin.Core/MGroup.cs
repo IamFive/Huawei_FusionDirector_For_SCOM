@@ -99,6 +99,11 @@ namespace FusionDirectorPlugin.Core
 #endif
                 }
 
+                if (!instance.IsConnected)
+                {
+                    instance.Reconnect();
+                }
+
                 return instance;
             }
         }

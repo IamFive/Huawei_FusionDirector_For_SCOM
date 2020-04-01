@@ -56,6 +56,7 @@ namespace FusionDirectorPlugin.ViewLib.Model
             this.DirectorVersion = string.Empty;
             this.LatestStatus = string.Empty;
             this.LatestConnectInfo = string.Empty;
+            this.UniqueId = string.Empty;
         }
 
         /// <summary>
@@ -154,6 +155,12 @@ namespace FusionDirectorPlugin.ViewLib.Model
         /// </summary>
         /// <value>The latest connect information.</value>
         public string LatestConnectInfo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the unique id of fd.
+        /// </summary>
+        /// <value>The the unique id of fd.</value>
+        public string UniqueId { get; set; }
 
         #endregion
 

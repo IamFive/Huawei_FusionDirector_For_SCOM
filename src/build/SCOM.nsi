@@ -285,10 +285,10 @@ Function .onInit
 FunctionEnd
 
 Function .onMyGuiInit
-	;Call CheckOS
-	;Call CheckSCOM
-	;Call CheckSCOMPluginIsInstall
-	;CheckNF
+	Call CheckOS
+	Call CheckSCOM
+	Call CheckSCOMPluginIsInstall
+	Call CheckNF
 FunctionEnd
 
 Function .onInstSuccess

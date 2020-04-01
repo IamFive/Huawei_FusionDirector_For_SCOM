@@ -22,6 +22,7 @@
 // <summary></summary>
 // ***********************************************************************
 using System;
+using System.Diagnostics;
 using System.Linq;
 using CommonUtil;
 using FusionDirectorPlugin.Model.Event;
@@ -59,7 +60,7 @@ namespace FusionDirectorPlugin.Core.Model
         public string UnionId { get; set; }
 
         /// <summary>
-        /// 1-告警 2-恢复 3-更新
+        /// 1-告警 2-恢复 3-事件
         /// </summary>
         /// <value>The type of the opt.</value>
         public string OptType => AlarmData.Category;
@@ -80,22 +81,18 @@ namespace FusionDirectorPlugin.Core.Model
         /// 0-information, 1-warning, 2-error
         /// </summary>
         /// <value>The severity.</value>
-        public string Severity
+        public int Severity
         {
             get
             {
-                switch (AlarmData.Severity)
+                switch (this.LevelId)
                 {
-                    case "1":
-                        return "2";
-                    case "2":
-                    case "3":
-                        return "1";
-                    case "4":
-                        return "0";
-                    default:
-                        return "0";
+                    case EventLogEntryType.Error:
+                        return 2;
+                    case EventLogEntryType.Warning:
+                        return 1;
                 }
+                return 0;
             }
         }
 
@@ -103,20 +100,21 @@ namespace FusionDirectorPlugin.Core.Model
         /// 1-Error, 2-Warning, 4-Information, 8-Success Audit, 16-Failure Audit.
         /// </summary>
         /// <value>The level identifier.</value>
-        public int LevelId
+        public EventLogEntryType LevelId
         {
             get
             {
-                switch (this.Severity)
+                switch (AlarmData.Severity)
                 {
-                    case "0":
-                        return 4;
                     case "1":
-                        return 2;
+                        return EventLogEntryType.Error;
                     case "2":
-                        return 1;
+                    case "3":
+                        return EventLogEntryType.Warning;
+                    case "4":
+                        return EventLogEntryType.Information;
                     default:
-                        return 4;
+                        return EventLogEntryType.Information;
                 }
             }
         }
@@ -131,9 +129,9 @@ namespace FusionDirectorPlugin.Core.Model
             {
                 switch (this.LevelId)
                 {
-                    case 1:
+                    case EventLogEntryType.Error:
                         return 2;
-                    case 2:
+                    case EventLogEntryType.Warning:
                         return 1;
                 }
                 return 0;
@@ -152,6 +150,11 @@ namespace FusionDirectorPlugin.Core.Model
             }
         }
 
+        public string EventId
+        {
+            get { return $"{this.Severity}{this.MantissaNumber}"; }
+        }
+
         /// <summary>
         /// To the custom monitoring event.
         /// </summary>
@@ -163,7 +166,7 @@ namespace FusionDirectorPlugin.Core.Model
                 LoggingComputer = this.FusionDirectorIp,//对应 Logging Computer
                 Channel = this.AlarmData.AlarmName.Split('#').Last(),//对应Log Name
                 TimeGenerated = DateTime.Now,
-                LevelId = this.LevelId,//对应LevelId
+                LevelId = (int)this.LevelId,//对应LevelId
                 EventData = this.GetAlarmDataXml(),
                 Message = new CustomMonitoringEventMessage(this.AlarmData.Additional)
             };
@@ -194,7 +197,7 @@ namespace FusionDirectorPlugin.Core.Model
             alarmData.Category = GetCategoryTxt(alarmData.Category);
             alarmData.Severity = GetSeverityTxt(alarmData.Severity);
             alarmData.IsClear = GetIsClearTxt(alarmData.IsClear);
-            alarmData.Suggstion = ":" + Environment.NewLine + alarmData.Suggstion;
+            alarmData.Suggestion = ":" + Environment.NewLine + alarmData.Suggestion;
             return XmlHelper.SerializeToXmlStr(alarmData, true);
         }
 
@@ -241,5 +244,20 @@ namespace FusionDirectorPlugin.Core.Model
                     return isClear;
             }
         }
+
+        public string Description
+        {
+            get
+            {
+            /*
+                The alert (Large Fan Speed Difference Warning Alarm) generated at 2020-03-22T17:23:18+08:00 for Fan1--1.rear (112.93.129.54_Fan1--1.rear) is caused by [Mock]Fan 1 rear failure or incorrect fan model. To rectify the fault, do as follows:
+            1.Replace the fan module.
+            2.If the server has a fan backplane, replace it.
+            **/
+                return $@"Alert ""{AlarmData.AlarmName.Split('#').Last()}"" was reported for ""{AlarmData.EventSubject}"" at {AlarmData.OccurTime}.
+The possible cause is: ""{AlarmData.PossibleCause ?? string.Empty}"". Suggested resolution is: {Environment.NewLine}{AlarmData.Suggestion ?? string.Empty}.";
+            }
+        }
     }
 }
+ 

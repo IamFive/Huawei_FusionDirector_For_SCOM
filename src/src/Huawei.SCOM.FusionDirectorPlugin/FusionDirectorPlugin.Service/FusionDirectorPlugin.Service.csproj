@@ -96,6 +96,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FusionDirectorAlarmProcessor.cs" />
     <Compile Include="LimitedConcurrencyLevelTaskScheduler.cs" />
     <Compile Include="FusionDirectorPluginService.cs">
       <SubType>Component</SubType>

@@ -186,6 +186,13 @@ namespace FusionDirectorPlugin.Model
             }
         }
 
+        public async Task<EventList> GetEventView(long? top, long? skip)
+        {
+            string filter = "(EventView='CurrentAlert')and(EventSearch='event_category:BMC','event_category:Enclosure')";
+            string order = "(EventOrder='ID asc')";
+            return await GetEventListCollectionAsync(top, skip, filter, order);
+        }
+
         /// <summary>查询事件列表.</summary>
         /// <param name="top">$top 查询参数指明返回的集合中应该包含的个数。最小值为1。未提供该选项则返回所有数据。</param>
         /// <param name="skip">$skip 查询参数指明在查询的集合中有多少个需要从头部跳过不被包含在返回中。</param>

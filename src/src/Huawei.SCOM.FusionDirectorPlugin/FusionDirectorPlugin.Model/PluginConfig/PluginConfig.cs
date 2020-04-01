@@ -43,5 +43,11 @@
 
         public int ThreadCount { get; set; }
 
+
+        public int RateLimitQueueSize { get; set; }
+        public int RateLimitTimeSpan { get; set; }
+
+
+
     }
 }

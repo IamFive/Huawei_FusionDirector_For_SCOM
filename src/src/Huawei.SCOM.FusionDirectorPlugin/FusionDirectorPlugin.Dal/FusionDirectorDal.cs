@@ -89,7 +89,7 @@ namespace FusionDirectorPlugin.Dal
             }
 
             var props = FdApplianceConnector.Instance.FdApplianceClass.PropertyCollection;
-            managementObject[props["SubscribeId"]].Value = DateTime.UtcNow;
+            managementObject[props["SubscribeId"]].Value = subscribeId;
             managementObject[props["SubscribeStatus"]].Value = subscribeStatus;
             managementObject[props["LatestSubscribeInfo"]].Value = latestSubscribeInfo;
             managementObject[props["LastModifyTime"]].Value = DateTime.Now;
@@ -105,19 +105,22 @@ namespace FusionDirectorPlugin.Dal
         private FusionDirector GetModelFromMpObject(EnterpriseManagementObject managementObject)
         {
             var props = FdApplianceConnector.Instance.FdApplianceClass.PropertyCollection;
-            var model = new FusionDirector();
-            model.HostIP = managementObject[props["HostIP"]].Value.ToString();
-            model.AliasName = managementObject[props["AliasName"]].Value.ToString();
-            model.LoginAccount = managementObject[props["LoginAccount"]].Value.ToString();
-            model.LoginPd = RijndaelManagedCrypto.Instance.DecryptFromCs(managementObject[props["LoginPd"]].Value.ToString());
-            model.Port = managementObject[props["Port"]].Value.ToString();
-            model.EventUserName = managementObject[props["EventUserName"]].Value.ToString();
-            model.EventPd = RijndaelManagedCrypto.Instance.DecryptFromCs(managementObject[props["EventPd"]].Value.ToString());
-            model.SubscribeId = managementObject[props["SubscribeId"]].Value.ToString();
-            model.SubscribeStatus = managementObject[props["SubscribeStatus"]].Value.ToString();
-            model.LatestSubscribeInfo = managementObject[props["LatestSubscribeInfo"]].Value.ToString();
-            model.LastModifyTime = Convert.ToDateTime(managementObject[props["LastModifyTime"]].Value.ToString());
-            model.CreateTime = Convert.ToDateTime(managementObject[props["CreateTime"]].Value.ToString());
+            var model = new FusionDirector
+            {
+                UniqueId = managementObject[props["UniqueId"]].Value.ToString(),
+                HostIP = managementObject[props["HostIP"]].Value.ToString(),
+                AliasName = managementObject[props["AliasName"]].Value.ToString(),
+                LoginAccount = managementObject[props["LoginAccount"]].Value.ToString(),
+                LoginPd = RijndaelManagedCrypto.Instance.DecryptFromCs(managementObject[props["LoginPd"]].Value.ToString()),
+                Port = managementObject[props["Port"]].Value.ToString(),
+                EventUserName = managementObject[props["EventUserName"]].Value.ToString(),
+                EventPd = RijndaelManagedCrypto.Instance.DecryptFromCs(managementObject[props["EventPd"]].Value.ToString()),
+                SubscribeId = managementObject[props["SubscribeId"]].Value.ToString(),
+                SubscribeStatus = managementObject[props["SubscribeStatus"]].Value.ToString(),
+                LatestSubscribeInfo = managementObject[props["LatestSubscribeInfo"]].Value.ToString(),
+                LastModifyTime = Convert.ToDateTime(managementObject[props["LastModifyTime"]].Value.ToString()),
+                CreateTime = Convert.ToDateTime(managementObject[props["CreateTime"]].Value.ToString())
+            };
 
             return model;
         }

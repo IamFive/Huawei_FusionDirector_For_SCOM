@@ -122,6 +122,7 @@
     <Compile Include="SingletonProvider.cs" />
     <Compile Include="SystemUtil.cs" />
     <Compile Include="TimeHelper.cs" />
+    <Compile Include="WindowEventLogHelper.cs" />
     <Compile Include="XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>

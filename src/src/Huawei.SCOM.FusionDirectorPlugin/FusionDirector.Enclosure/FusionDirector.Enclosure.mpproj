@@ -34,23 +34,23 @@
   <ItemGroup>
     <ManagementPackReference Include="Microsoft.SystemCenter.Library">
       <Alias>SC</Alias>
-      <PackageToBundle>false</PackageToBundle>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.Windows.Library">
       <Alias>Windows</Alias>
-      <PackageToBundle>false</PackageToBundle>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="System.Health.Library">
       <Alias>Health</Alias>
-      <PackageToBundle>false</PackageToBundle>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="System.Library">
       <Alias>System</Alias>
-      <PackageToBundle>false</PackageToBundle>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.SystemCenter.Visualization.Library">
       <Alias>Visualization</Alias>
-      <PackageToBundle>false</PackageToBundle>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +62,7 @@
     <Folder Include="Monitors\Groups" />
     <Folder Include="Folders" />
     <Folder Include="Rules" />
+    <Folder Include="Rules\Enclosure" />
     <Folder Include="Scripts" />
     <Folder Include="Views" />
   </ItemGroup>
@@ -90,85 +91,65 @@
       <SubType>Code</SubType>
       <DependentUpon>Monitors\Groups\FusionDirector.Enclosure.Monitor.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.10.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.10.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.10.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.11.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.11.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.11.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.12.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.12.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.12.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.13.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.13.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.13.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.14.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.14.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.14.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.15.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.15.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.15.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.16.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.16.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.16.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.17.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.17.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.17.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.18.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.18.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.18.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.19.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.19.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.19.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.20.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.20.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.20.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.21.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.21.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.21.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.22.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.22.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.22.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.23.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.23.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.23.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.24.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.24.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.24.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.25.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.25.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.25.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.26.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.26.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.26.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.27.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.27.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.27.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.28.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.28.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.28.mptg</DependentUpon>
     </Compile>
-    <Compile Include="Rules\FusionDirector.Enclosure.Rule.29.mptg.mpx">
+    <Compile Include="Rules\Enclosure\Alarm.To.Alert.Rule.29.mpx">
       <SubType>Code</SubType>
-      <DependentUpon>Rules\FusionDirector.Enclosure.Rule.29.mptg</DependentUpon>
     </Compile>
     <Compile Include="Views\FusionDirector.Enclosure.AlertView.mptg.mpx">
       <SubType>Code</SubType>
@@ -177,10 +158,6 @@
     <Compile Include="Views\FusionDirector.Enclosure.DiagramView.mptg.mpx">
       <SubType>Code</SubType>
       <DependentUpon>Views\FusionDirector.Enclosure.DiagramView.mptg</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FusionDirector.Enclosure.EventView.mptg.mpx">
-      <SubType>Code</SubType>
-      <DependentUpon>Views\FusionDirector.Enclosure.EventView.mptg</DependentUpon>
     </Compile>
     <Compile Include="Views\FusionDirector.Enclosure.StateView.mptg.mpx">
       <SubType>Code</SubType>
@@ -208,95 +185,11 @@
       <SubType>Content</SubType>
       <Generator>FragmentGenerator</Generator>
     </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.10.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.11.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.12.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.13.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.14.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.15.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.16.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.17.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.18.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.19.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.20.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.21.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.22.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.23.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.24.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.25.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.26.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.27.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.28.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Rules\FusionDirector.Enclosure.Rule.29.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
     <Content Include="Views\FusionDirector.Enclosure.AlertView.mptg">
       <SubType>Content</SubType>
       <Generator>FragmentGenerator</Generator>
     </Content>
     <Content Include="Views\FusionDirector.Enclosure.DiagramView.mptg">
-      <SubType>Content</SubType>
-      <Generator>FragmentGenerator</Generator>
-    </Content>
-    <Content Include="Views\FusionDirector.Enclosure.EventView.mptg">
       <SubType>Content</SubType>
       <Generator>FragmentGenerator</Generator>
     </Content>

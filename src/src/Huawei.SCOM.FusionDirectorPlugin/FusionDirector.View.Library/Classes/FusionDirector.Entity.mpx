@@ -3,7 +3,8 @@
     <EntityTypes>
       <ClassTypes>
         <ClassType ID="FusionDirector.Entity" Base="System!System.PhysicalEntity" Accessibility="Public" Abstract="false" Hosted="false" Singleton="false">
-            <Property ID="HostIP" Type="string" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" />
+          <Property ID="UniqueId" Type="string" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" />
+          <Property ID="HostIP" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" />
           <Property ID="AliasName" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" />
           <Property ID="LoginAccount" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" />
           <Property ID="LoginPd" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" />

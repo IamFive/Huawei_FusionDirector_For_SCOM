@@ -37,13 +37,12 @@ namespace FusionDirectorPlugin.Model.Event
             this.IsClear = string.Empty;
             this.Status = eventInfo.Status;
             this.Additional = eventInfo.Description;
-            this.Cause = eventInfo.PossibleCause;
             this.DeviceId = eventInfo.DeviceID;
             this.EventCategory = eventInfo.EventCategory;
             this.EventSubject = eventInfo.EventSubject;
             this.EventDescriptionArgs = eventInfo.EventDescriptionArgs;
             this.PossibleCause = eventInfo.PossibleCause;
-            this.Suggstion = eventInfo.HandingSuggesstion;
+            this.Suggestion = eventInfo.HandingSuggesstion;
             this.Effect = eventInfo.Effect;
 
         }
@@ -64,13 +63,12 @@ namespace FusionDirectorPlugin.Model.Event
             this.IsClear = string.Empty;
             this.Status = eventInfo.Status;
             this.Additional = eventInfo.EventDescription;
-            this.Cause = string.Empty;
             this.DeviceId = eventInfo.DeviceID;
             this.EventCategory = eventInfo.EventCategory;
             this.EventSubject = eventInfo.EventSubject;
             this.EventDescriptionArgs = eventInfo.EventDescriptionArgs;
             this.PossibleCause = string.Empty;
-            this.Suggstion = string.Empty;
+            this.Suggestion = string.Empty;
             this.Effect = string.Empty;
         }
 
@@ -210,8 +208,8 @@ namespace FusionDirectorPlugin.Model.Event
         /// <summary>
         /// 告警描述
         /// </summary>
-        [JsonProperty("cause")]
-        public string Cause { get; set; }
+        //[JsonProperty("cause")]
+        //public string Cause { get; set; }
 
         /// <summary>
         /// 设备deviceid
@@ -241,14 +239,14 @@ namespace FusionDirectorPlugin.Model.Event
         /// <summary>
         /// 可能原因
         /// </summary>
-        [JsonProperty("possiblecause")]
+        [JsonProperty("cause")]
         public string PossibleCause { get; set; }
 
         /// <summary>
         /// 处理建议
         /// </summary>
-        [JsonProperty("suggstion")]
-        public string Suggstion { get; set; }
+        [JsonProperty("suggestion")]
+        public string Suggestion { get; set; }
 
         /// <summary>
         /// 影响
