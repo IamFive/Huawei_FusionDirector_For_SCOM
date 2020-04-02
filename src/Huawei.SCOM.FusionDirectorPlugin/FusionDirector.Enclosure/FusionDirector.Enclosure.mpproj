@@ -14,7 +14,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\..\Release\MPFiles\</OutputPath>
+    <OutputPath>..\..\Release\MPFiles\</OutputPath>
     <GenerateSealed>True</GenerateSealed>
     <Company>Huawei Technologies Co. Ltd</Company>
     <Copyright>Copyright (c) Huawei Technologies Co. Ltd. All rights reserved.</Copyright>
@@ -23,7 +23,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>
-    <OutputPath>..\..\..\Release\MPFiles\</OutputPath>
+    <OutputPath>..\..\Release\MPFiles\</OutputPath>
     <DelaySigning>False</DelaySigning>
     <Company>Huawei Technologies Co. Ltd</Company>
     <Copyright>Copyright (c) Huawei Technologies Co. Ltd. All rights reserved.</Copyright>
