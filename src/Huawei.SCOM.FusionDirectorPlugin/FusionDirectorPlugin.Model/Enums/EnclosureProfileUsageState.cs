@@ -32,6 +32,11 @@ namespace FusionDirectorPlugin.Model
     public enum EnclosureProfileUsageState
     {
         /// <summary>
+        /// The inconsistent
+        /// </summary>
+        Unsupported = -1,
+
+        /// <summary>
         /// The empty
         /// </summary>
         Empty = 0,
@@ -45,5 +50,6 @@ namespace FusionDirectorPlugin.Model
         /// The inconsistent
         /// </summary>
         Inconsistent = 2,
+
     }
 }
