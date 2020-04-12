@@ -51,27 +51,38 @@ namespace FusionDirectorPlugin.WebServer
         {
             context.Response.AddHeader("Access-Control-Allow-Origin", "*");
             context.Response.ContentType = "text/plain";
-            var url = context.Request.Url;
-            try
+            string method = context.Request.HttpMethod.ToUpper();
+
+
+            if (method.Equals("GET"))
             {
-                var authorization = context.Request.Headers["Authorization"];
-
-                JsonReader reader = new JsonTextReader(new StreamReader(context.Request.InputStream));
-                var obj = JObject.Load(reader);
-                var pushData = obj.ToObject<PushData>();
-
-                var alarmData = pushData.Data;
-                alarmData.Status = alarmData.Category == "1" ? "Uncleared" : "Cleared";
-               
-                var message = new TcpMessage<AlarmData>(authorization, TcpMessageType.Alarm, alarmData);
-                NotifyClient.Instance.SendMsg(message);
                 context.Response.Write($"success");
             }
-            catch (Exception ex)
+            else if (method.Equals("POST"))
             {
-                HWLogger.NotifyRecv.Error(ex, $"Alarm Notification Error.[{url}]");
-                context.Response.Write($"Alarm Notification Error: { ex }");
+                var url = context.Request.Url;
+                try
+                {
+                    var authorization = context.Request.Headers["Authorization"];
+
+                    JsonReader reader = new JsonTextReader(new StreamReader(context.Request.InputStream));
+                    var obj = JObject.Load(reader);
+                    var pushData = obj.ToObject<PushData>();
+
+                    var alarmData = pushData.Data;
+                    alarmData.Status = alarmData.Category == "1" ? "Uncleared" : "Cleared";
+
+                    var message = new TcpMessage<AlarmData>(authorization, TcpMessageType.Alarm, alarmData);
+                    NotifyClient.Instance.SendMsg(message);
+                    context.Response.Write($"success");
+                }
+                catch (Exception ex)
+                {
+                    HWLogger.NotifyRecv.Error(ex, $"Alarm Notification Error.[{url}]");
+                    context.Response.Write($"Alarm Notification Error: { ex }");
+                }
             }
+        
             context.Response.End();
         }
         /// <summary>
