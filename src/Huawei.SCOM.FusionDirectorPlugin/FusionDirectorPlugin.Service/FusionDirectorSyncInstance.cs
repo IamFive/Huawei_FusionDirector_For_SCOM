@@ -199,7 +199,7 @@ namespace FusionDirectorPlugin.Service
                     {
                         try
                         {
-                            if (IsComplete)
+                            if (IsComplete && IsRunning)
                             {
                                 logger.Polling.Info("All sync task has finished, sync open alarms now.");
                                 SyncFusionDirectorOpenAlarms();
@@ -207,7 +207,7 @@ namespace FusionDirectorPlugin.Service
                         }
                         finally
                         {
-                            if (!IsComplete)
+                            if (!IsComplete && IsRunning)
                             {
                                 waitSyncTaskFinishedTimer.Start(); // Restart timer for next tick's checking
                             }
@@ -455,7 +455,6 @@ namespace FusionDirectorPlugin.Service
         /// </summary>
         public void Close()
         {
-            logger.Polling.Info($"Delete FusionDirector SyncInstance");
             HWLogger.Service.Info($"Delete FusionDirector SyncInstance: {this.FusionDirectorIp}");
             this.IsRunning = false;
 
@@ -466,12 +465,12 @@ namespace FusionDirectorPlugin.Service
                 {
                     this.eventService.DeleteGivenSubscriptions(FusionDirector.SubscribeId);
                     FusionDirectorDal.Instance.UpdateSubscribeStatus(this.FusionDirectorIp, SubscribeStatus.NotSubscribed, "", "");
-                    logger.Polling.Info($"Unsubscribe event notification success.");
+                    HWLogger.Service.Info($"Unsubscribe event notification success.");
                 }
                 catch (Exception ex)
                 {
                     FusionDirectorDal.Instance.UpdateSubscribeStatus(this.FusionDirectorIp, SubscribeStatus.Error, ex.Message, "");
-                    logger.Polling.Info(ex, $"Failed to unsubscribe event notification for fusion director: {FusionDirectorIp}");
+                    HWLogger.Service.Info(ex, $"Failed to unsubscribe event notification for fusion director: {FusionDirectorIp}");
                 }
             }
 

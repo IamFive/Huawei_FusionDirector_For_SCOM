@@ -159,7 +159,7 @@ namespace FusionDirectorPlugin.Service
         private FixedSizedQueue<ProcessedOn> GetProcessedOnQueue(EventData eventObject)
         {
             // for SCOM below 2019(10.x.x.x), Rule Rate limit has bug, we use single ProcessOnQueue for all rules
-            var key = "Common"; 
+            var key = "Common";
             if (Version.Major >= 10)
             {
                 key = $"{eventObject.AlarmData.EventCategory}_{eventObject.EventId}"; // group by rule
@@ -352,7 +352,7 @@ namespace FusionDirectorPlugin.Service
             int currentPage = 1;
 
             var allOpenAlarms = new List<EventSummary>();
-            while (currentPage <= totalPages)
+            while (currentPage <= totalPages && IsRunning)
             {
                 try
                 {
@@ -408,43 +408,63 @@ namespace FusionDirectorPlugin.Service
                 {
                     logger.Polling.Error(ex, $"[SyncOpenAlarms] Failed to sync open alarms from fusion director: {FusionDirectorIp}. Page number: {currentPage}.");
                 }
-
-                currentPage++;
+                finally
+                {
+                    currentPage++;
+                }
             }
 
-            // find all alerts that is still open in SCOM but not in esight ope
-            alerts.ToList().ForEach(alert =>
+            try
             {
-                bool exists = allOpenAlarms.Any(alarm =>
+                // find all alerts that is still open in SCOM but not in esight ope
+                alerts.ToList().ForEach(alert =>
                 {
-                    var data = new AlarmData(alarm);
-                    return GetScomAlertSuppressionPredicator(data).Invoke(alert);
+                    bool exists = allOpenAlarms.Any(alarm =>
+                    {
+                        var data = new AlarmData(alarm);
+                        return GetScomAlertSuppressionPredicator(data).Invoke(alert);
+                    });
+
+                    if (!exists)
+                    {
+                        alert.ResolutionState = EnclosureConnector.Instance.CloseState.ResolutionState;
+                        alert.Update($"Closed by sync open alarms interval task.");
+                        logger.Polling.Info($"[{alert.CustomField3}] Succeed closing SCOM alert when syncing open alarm task.");
+                    }
                 });
-
-                if (!exists)
-                {
-                    alert.ResolutionState = EnclosureConnector.Instance.CloseState.ResolutionState;
-                    alert.Update($"Closed by sync open alarms interval task.");
-                    logger.Polling.Info($"[{alert.CustomField3}] Succeed closing SCOM alert when syncing open alarm task.");
-                }
-            });
-
-
-            // 同步所有告警完成后,重新进行订阅
-            if (string.IsNullOrEmpty(this.FusionDirector.SubscribeStatus) || this.FusionDirector.SubscribeStatus != SubscribeStatus.Success)
-            {
-                var existSubscriptions = await this.eventService.GetEventServiceSubscriptionsinformationAsync();
-                var existSubscription = existSubscriptions.Members.FirstOrDefault(x => x.IP == pluginConfig.InternetIp && x.Port == pluginConfig.InternetPort);
-                if (existSubscription != null)
-                {
-                    logger.Subscribe.Debug($"[SyncOpenAlarms] Subscription for current SCOM is already exist. Will delete it now.");
-                    this.eventService.DeleteGivenSubscriptions(existSubscription.Id);
-                }
-                await Subscribe();
             }
-            else
+            catch (Exception e)
             {
-                logger.Subscribe.Debug($"[SyncOpenAlarms] Subscription status is already success. No re-subscribe required.");
+                logger.Polling.Error(e, $"[SyncOpenAlarms] Failed to close cleared alerts when sync open alarms.");
+            }
+
+
+            try
+            {
+                if (IsRunning)
+                {
+                    // 同步所有告警完成后,重新进行订阅
+                    if (string.IsNullOrEmpty(this.FusionDirector.SubscribeStatus) || this.FusionDirector.SubscribeStatus != SubscribeStatus.Success)
+                    {
+                        var existSubscriptions = await this.eventService.GetEventServiceSubscriptionsinformationAsync();
+                        var existSubscription = existSubscriptions.Members.FirstOrDefault(x => x.IP == pluginConfig.InternetIp && x.Port == pluginConfig.InternetPort);
+                        if (existSubscription != null)
+                        {
+                            logger.Subscribe.Info($"[SyncOpenAlarms] Subscription for current SCOM is already exist. Will delete it now.");
+                            this.eventService.DeleteGivenSubscriptions(existSubscription.Id);
+                        }
+
+                        await Subscribe();
+                    }
+                    else
+                    {
+                        logger.Subscribe.Info($"[SyncOpenAlarms] Subscription status is already success. No re-subscribe required.");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Subscribe.Error(e, $"[SyncOpenAlarms] Try re-subscribe failed");
             }
         }
 

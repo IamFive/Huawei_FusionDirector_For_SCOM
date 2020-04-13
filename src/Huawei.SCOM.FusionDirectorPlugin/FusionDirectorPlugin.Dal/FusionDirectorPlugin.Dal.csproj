@@ -80,6 +80,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\open_source\Newtonsoft.Json\newtonsoft.json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\..\open_source\NLog\NLog.4.5.11\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -108,6 +111,10 @@
     <ProjectReference Include="..\CommonUtil\CommonUtil.csproj">
       <Project>{C79A21BF-E869-4B93-A787-67B1D4231C02}</Project>
       <Name>CommonUtil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FusionDirectorPlugin.LogUtil\FusionDirectorPlugin.LogUtil.csproj">
+      <Project>{20c19378-3b5f-4051-8145-d0f8c10219e2}</Project>
+      <Name>FusionDirectorPlugin.LogUtil</Name>
     </ProjectReference>
     <ProjectReference Include="..\FusionDirectorPlugin.ViewLib\FusionDirectorPlugin.ViewLib.csproj">
       <Project>{800ae076-991f-431c-b164-9a031230f2f8}</Project>

@@ -661,7 +661,6 @@ namespace FusionDirectorPlugin.Service
             var syncInstance = this.SyncInstances.FirstOrDefault(y => y.FusionDirectorIp == fdIp);
             if (syncInstance != null)
             {
-                syncInstance.Close();
                 var isFinish = false;
                 int i = 0;
                 while (!isFinish)
@@ -671,6 +670,7 @@ namespace FusionDirectorPlugin.Service
                     {
                         try
                         {
+                            syncInstance.Close();
                             this.SyncInstances.Remove(syncInstance);
                             if (i > 1)//如果首次检查正在同步，则睡眠一分钟后删除，防止UI报错
                             {
@@ -747,7 +747,7 @@ namespace FusionDirectorPlugin.Service
         /// </summary>
         private void RunCheckApplianceTask()
         {
-            Task.Run(() =>
+            Task.Run(async () =>
             {
                 try
                 {
@@ -760,7 +760,7 @@ namespace FusionDirectorPlugin.Service
                         SoftwareVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString(),
                         EnclosureCollection = GetEnclosureCollectionHealth(),
                         ServerCollection = GetServerCollectionHealth(),
-                        EventCollection = GetEventCollectionHealth(),
+                        EventCollection = await GetEventCollectionHealthAsync(),
                         FusionDirectorCollection = GetFusionDirectorCollectionHealth(),
                     };
                     #region PerformanceCollection
@@ -984,7 +984,7 @@ namespace FusionDirectorPlugin.Service
         /// Gets the event collection.
         /// </summary>
         /// <returns>EventCollection.</returns>
-        private EventCollection GetEventCollectionHealth()
+        private async Task<EventCollection> GetEventCollectionHealthAsync()
         {
             var isInstall = CheckIISIsInstall();
             if (!isInstall)
@@ -996,7 +996,7 @@ namespace FusionDirectorPlugin.Service
                     ErrorMsg = "IIS Express is not installed."
                 };
             }
-            var webServerAvailable = CheckWebserverAvailable();
+            var webServerAvailable = await CheckWebserverAvailableAsync();
             if (!webServerAvailable)
             {
                 return new EventCollection
@@ -1074,18 +1074,24 @@ namespace FusionDirectorPlugin.Service
         /// Checks the webserver availble.
         /// </summary>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        private bool CheckWebserverAvailable()
+        private async Task<bool> CheckWebserverAvailableAsync()
         {
             try
             {
-                var url = $"https://{pluginConfig.InternetIp}:{pluginConfig.InternetPort}/staticweb/index.html";
+                var url = $"https://{pluginConfig.InternetIp}:{pluginConfig.InternetPort}/AlarmReciver.ashx";
                 var httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };
                 var res = httpClient.GetAsync(url).Result;
+                var success = res.StatusCode == HttpStatusCode.OK;
+                if (!success) {
+                    var content = await res.Content.ReadAsStringAsync();
+                    this.OnError($"IIS express index page is not correct responding, status code: {res.StatusCode}, response content: {content}");
+                    res.EnsureSuccessStatusCode();
+                }
                 return res.StatusCode == HttpStatusCode.OK;
             }
             catch (Exception e)
             {
-                this.OnError("Check EventService falid", e);
+                this.OnError("IIS express index page is not correct responding", e);
                 return false;
             }
         }

@@ -66,6 +66,16 @@ namespace FusionDirectorPlugin.LogUtil
         /// </summary>
         /// <param name="fdip">The e sight ip.</param>
         /// <returns>Logger.</returns>
+        public static Logger GetFdSubscribeLogger(string fdip)
+        {
+            return LogManager.GetLogger($"{fdip}.Subscribe");
+        }
+
+        /// <summary>
+        /// Gets the e sight SDK logger.
+        /// </summary>
+        /// <param name="fdip">The e sight ip.</param>
+        /// <returns>Logger.</returns>
         public static Logger GetFdSdkLogger(string fdip)
         {
             return LogManager.GetLogger($"{fdip}.Sdk");

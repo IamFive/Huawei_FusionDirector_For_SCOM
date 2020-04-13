@@ -28,6 +28,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using CommonUtil;
 using FusionDirectorPlugin.Dal.Model;
+using FusionDirectorPlugin.LogUtil;
 using FusionDirectorPlugin.ViewLib.Model;
 using FusionDirectorPlugin.ViewLib.OM12R2;
 using Microsoft.EnterpriseManagement.Common;
@@ -83,18 +84,20 @@ namespace FusionDirectorPlugin.Dal
         public void UpdateSubscribeStatus(string hostIP, string subscribeStatus, string latestSubscribeInfo, string subscribeId)
         {
             var managementObject = FdApplianceConnector.Instance.FindByHost(hostIP).Result.Data;
-            if (managementObject == null)
+            if (managementObject != null)
             {
-                throw new Exception($"Can not find the FusionDirector:{hostIP}");
+                var props = FdApplianceConnector.Instance.FdApplianceClass.PropertyCollection;
+                managementObject[props["SubscribeId"]].Value = subscribeId;
+                managementObject[props["SubscribeStatus"]].Value = subscribeStatus;
+                managementObject[props["LatestSubscribeInfo"]].Value = latestSubscribeInfo;
+                managementObject[props["LastModifyTime"]].Value = DateTime.Now;
+
+                managementObject.Overwrite();
             }
-
-            var props = FdApplianceConnector.Instance.FdApplianceClass.PropertyCollection;
-            managementObject[props["SubscribeId"]].Value = subscribeId;
-            managementObject[props["SubscribeStatus"]].Value = subscribeStatus;
-            managementObject[props["LatestSubscribeInfo"]].Value = latestSubscribeInfo;
-            managementObject[props["LastModifyTime"]].Value = DateTime.Now;
-
-            managementObject.Overwrite();
+            else
+            {
+                HWLogger.Service.Warn($"Failed to update subscribe status for `{hostIP}`, reason is: fusion director appliance does not exists.");
+            }
         }
 
         /// <summary>
