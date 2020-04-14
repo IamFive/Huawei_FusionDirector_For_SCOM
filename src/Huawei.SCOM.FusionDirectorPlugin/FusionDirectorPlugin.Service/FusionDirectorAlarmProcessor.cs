@@ -106,7 +106,7 @@ namespace FusionDirectorPlugin.Service
 
                                 var objectId = eventObject.UnionId;
                                 string mpClazzName = EventCategory.BMC.Equals(alarm.EventCategory) ? EntityTypeConst.Server.MainName : EntityTypeConst.Enclosure.MainName;
-                                ManagementPackClass mpClazz = MGroup.Instance.GetManagementPackClass(EntityTypeConst.Server.MainName);
+                                ManagementPackClass mpClazz = MGroup.Instance.GetManagementPackClass(mpClazzName);
                                 MonitoringDeviceObject monitoringObject = BaseConnector.GetDeviceByObjectId(mpClazz, objectId);
                                 if (monitoringObject == null)
                                 {
@@ -362,7 +362,7 @@ namespace FusionDirectorPlugin.Service
                     allOpenAlarms.AddRange(eventView.Members);
                     logger.Polling.Info($"[SyncOpenAlarms] Succeed fetching open alarms. Pagination:: page: {currentPage}, count:{eventView.Members.Count}.");
 
-                    eventView.Members.ForEach(async item =>
+                    foreach (var item in eventView.Members)
                     {
                         // we does not care about whether the alert exists or not indeed.
                         // if we insert same alert, it will just increase repeat count.
@@ -401,8 +401,7 @@ namespace FusionDirectorPlugin.Service
                         {
                             logger.Polling.Info($"[SyncOpenAlarms] Alarm `{alarm.Sn}` exists, ignore.");
                         }
-
-                    });
+                    }
                 }
                 catch (Exception ex)
                 {
