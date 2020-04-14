@@ -188,6 +188,7 @@ xcopy /e /r /y "$(TargetDir)FusionDirectorPlugin.ViewLib.dll" "$(SolutionDir)..\
 xcopy /e /r /y "$(TargetDir)Newtonsoft.Json.dll" "$(SolutionDir)..\Release\Configuration\"
 xcopy /e /r /y "$(TargetDir)NLog.dll" "$(SolutionDir)..\Release\Configuration\"
 xcopy /e /r /y "$(TargetDir)logo.ico" "$(SolutionDir)..\Release\Configuration\"
-xcopy /e /r /y "$(TargetDir)Certs\*" "$(SolutionDir)..\Release\Certs\"</PostBuildEvent>
+xcopy /e /r /y "$(TargetDir)Certs\*" "$(SolutionDir)..\Release\Certs\"
+rmdir /s/q "$(SolutionDir)..\Release\Configuration\Certs" </PostBuildEvent>
   </PropertyGroup>
 </Project>
