@@ -157,7 +157,7 @@ namespace FusionDirectorPlugin.ViewLib.Client
             catch (Exception ex)
             {
                 var e = this.ProcessException(url, ex);
-                ret.Message = e is AuthenticationException ? "Certificate valid falid.Please upload the correct certificate." : e.Message;
+                ret.Message = e is AuthenticationException ? "Certificate authentication failed. Upload a correct certificate." : e.Message;
             }
             return ret;
         }
@@ -191,7 +191,7 @@ namespace FusionDirectorPlugin.ViewLib.Client
             catch (Exception ex)
             {
                 var e = this.ProcessException(url, ex);
-                ret.Message = e is AuthenticationException ? "Certificate valid falid.Please upload the correct certificate." : e.Message;
+                ret.Message = e is AuthenticationException ? "Certificate authentication failed. Upload a correct certificate." : e.Message;
             }
             return ret;
         }
