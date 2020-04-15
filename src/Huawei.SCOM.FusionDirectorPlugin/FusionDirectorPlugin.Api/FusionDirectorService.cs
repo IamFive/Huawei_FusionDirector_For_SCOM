@@ -75,7 +75,7 @@ namespace FusionDirectorPlugin.Api
                 var e = ProcessException(url, ex);
                 if (e is AuthenticationException)
                 {
-                    ret.Msg = "Certificate valid falid.Please upload the correct certificate." + e.Message;
+                    ret.Msg = "Certificate authentication failed. Upload a correct certificate. " + e.Message;
                 }
                 else
                 {
