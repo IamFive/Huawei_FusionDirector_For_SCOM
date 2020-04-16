@@ -26,6 +26,7 @@ using FusionDirectorPlugin.LogUtil;
 using System;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -36,6 +37,10 @@ namespace FusionDirectorPlugin.PluginConfigs.Helpers
     /// </summary>
     public static class XmlHelper
     {
+
+        static object Lock = new object();
+
+
         /// <summary>
         /// 反序列化
         /// </summary>
@@ -44,12 +49,35 @@ namespace FusionDirectorPlugin.PluginConfigs.Helpers
         /// <returns>System.Object.</returns>
         public static object Load(Type type, string filename)
         {
-            string config = File.ReadAllText(filename);
-            HWLogger.Service.Info($"Plugin Configuration is:: {config}");
-            using (FileStream fs = new FileStream(Path.Combine(filename), FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            lock (Lock)
             {
-                XmlSerializer serializer = new XmlSerializer(type);
-                return serializer.Deserialize(fs);
+                int maxRetryTimes = 5;
+                while(maxRetryTimes-- > 0)
+                {
+                    try
+                    {
+                        XmlSerializer serializer = new XmlSerializer(type);
+                        string config = File.ReadAllText(filename);
+                        HWLogger.Service.Info($"Plugin Configuration is:: {config}");
+                        using (TextReader reader = new StringReader(config))
+                        {
+                            return serializer.Deserialize(reader);
+                        }
+                    } 
+                    catch (Exception e)
+                    {
+                        HWLogger.Service.Info(e, $"Failed to deserialize plugin xml config file.");
+                        Thread.Sleep(TimeSpan.FromSeconds(1));
+                    }
+                }
+
+                throw new Exception("Failed to deserialize plugin xml config file. Please check log file.");
+
+                //using (FileStream fs = new FileStream(Path.Combine(filename), FileMode.Open, FileAccess.Read))
+                //{
+                //    serializer.Deserialize(config);
+                //    return serializer.Deserialize(fs);
+                //}
             }
         }
 
@@ -60,11 +88,15 @@ namespace FusionDirectorPlugin.PluginConfigs.Helpers
         /// <param name="filename">文件路径</param>
         public static void Save(object obj, string filename)
         {
-            using (FileStream fs = new FileStream(Path.Combine(filename), FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
+            lock (Lock)
             {
-                XmlSerializer serializer = new XmlSerializer(obj.GetType());
-                serializer.Serialize(fs, obj);
-                fs.Flush();
+                using (FileStream fs = new FileStream(Path.Combine(filename), FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
+                {
+                    XmlSerializer serializer = new XmlSerializer(obj.GetType());
+                    serializer.Serialize(fs, obj);
+                    fs.Flush();
+                    fs.Close();
+                }
             }
         }
 
