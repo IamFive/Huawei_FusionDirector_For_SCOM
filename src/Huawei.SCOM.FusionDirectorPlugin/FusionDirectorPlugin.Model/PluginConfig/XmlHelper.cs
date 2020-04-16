@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 //MIT license for more detail.
 //*************************************************************************  
-﻿// ***********************************************************************
+// ***********************************************************************
 // Assembly         : CommonUtil
 // Author           : panwei
 // Created          : 12-25-2018
@@ -22,6 +22,7 @@
 // <summary></summary>
 // ***********************************************************************
 
+using FusionDirectorPlugin.LogUtil;
 using System;
 using System.IO;
 using System.Text;
@@ -43,6 +44,8 @@ namespace FusionDirectorPlugin.PluginConfigs.Helpers
         /// <returns>System.Object.</returns>
         public static object Load(Type type, string filename)
         {
+            string config = File.ReadAllText(filename);
+            HWLogger.Service.Info($"Plugin Configuration is:: {config}");
             using (FileStream fs = new FileStream(Path.Combine(filename), FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 XmlSerializer serializer = new XmlSerializer(type);
@@ -61,6 +64,7 @@ namespace FusionDirectorPlugin.PluginConfigs.Helpers
             {
                 XmlSerializer serializer = new XmlSerializer(obj.GetType());
                 serializer.Serialize(fs, obj);
+                fs.Flush();
             }
         }
 
