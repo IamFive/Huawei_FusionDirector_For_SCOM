@@ -40,7 +40,7 @@ namespace FusionDirectorPlugin.ViewLib.Client
     /// <summary>
     /// Class FdClient.
     /// </summary>
-    internal class FdClient
+    internal class FdClient: IDisposable
     {
 
         #region Constructor
@@ -52,8 +52,9 @@ namespace FusionDirectorPlugin.ViewLib.Client
         public FdClient(FdAppliance fusionDirector)
         {
             this.Appliance = fusionDirector;
-            this.httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(5) };
+            this.httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
             this.httpClient.DefaultRequestHeaders.Add("Authorization", this.BaseAuthStr);
+            this.httpClient.DefaultRequestHeaders.ConnectionClose = true;
 
             ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
             {
@@ -256,6 +257,14 @@ namespace FusionDirectorPlugin.ViewLib.Client
                 return this.GetInnerException(ex.InnerException);
             }
             return ex;
+        }
+
+        public void Dispose()
+        {
+            if (this.httpClient != null)
+            {
+                this.httpClient.Dispose();
+            }
         }
     }
 }

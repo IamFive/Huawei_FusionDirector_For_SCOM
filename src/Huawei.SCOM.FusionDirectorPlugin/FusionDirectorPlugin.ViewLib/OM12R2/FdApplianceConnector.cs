@@ -232,13 +232,15 @@ namespace FusionDirectorPlugin.ViewLib.OM12R2
                              var eventPd = exsitObj[props["EventPd"]].Value as string;
                              if (eventAccount != appliance.EventUserName || eventPd != appliance.EventPd)
                              {
-                                 var client = new FdClient(appliance);
-                                 var res = await client.DeleteGivenSubscriptions(appliance.SubscribeId);
-                                 LogHelper.Info($"Update Fd:DeleteGivenSubscriptions:{res.Code} {res.Message}");
-                                 // 取消订阅后重置订阅状态
-                                 exsitObj[props["SubscribeId"]].Value = string.Empty;
-                                 exsitObj[props["SubscribeStatus"]].Value = string.Empty;
-                                 exsitObj[props["LatestSubscribeInfo"]].Value = string.Empty;
+                                 using (var client = new FdClient(appliance))
+                                 {
+                                     var res = await client.DeleteGivenSubscriptions(appliance.SubscribeId);
+                                     LogHelper.Info($"Update Fd:DeleteGivenSubscriptions:{res.Code} {res.Message}");
+                                     // 取消订阅后重置订阅状态
+                                     exsitObj[props["SubscribeId"]].Value = string.Empty;
+                                     exsitObj[props["SubscribeStatus"]].Value = string.Empty;
+                                     exsitObj[props["LatestSubscribeInfo"]].Value = string.Empty;
+                                 }
                              }
                          }
                          catch (Exception ex)
@@ -280,14 +282,16 @@ namespace FusionDirectorPlugin.ViewLib.OM12R2
                     {
                         return Result.Failed(104, $"{appliance.HostIP} does not exists, delete failed.");
                     }
-                    var client = new FdClient(appliance);
-                    var res = await client.DeleteGivenSubscriptions(appliance.SubscribeId);
-                    LogHelper.Info($"Delete Fd:DeleteGivenSubscriptions:{res.Code} {res.Message}");
+                    using (var client = new FdClient(appliance))
+                    {
+                        var res = await client.DeleteGivenSubscriptions(appliance.SubscribeId);
+                        LogHelper.Info($"Delete Fd:DeleteGivenSubscriptions:{res.Code} {res.Message}");
 
-                    var incrementalDiscoveryData = new IncrementalDiscoveryData();
-                    incrementalDiscoveryData.Remove(exsitObj);
-                    incrementalDiscoveryData.Commit(MGroup.Instance);
-                    return Result.Done();
+                        var incrementalDiscoveryData = new IncrementalDiscoveryData();
+                        incrementalDiscoveryData.Remove(exsitObj);
+                        incrementalDiscoveryData.Commit(MGroup.Instance);
+                        return Result.Done();
+                    }
                 }
                 catch (Exception e)
                 {

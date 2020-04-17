@@ -41,7 +41,7 @@ namespace FusionDirectorPlugin.Api
     /// <summary>
     /// Class BaseService.
     /// </summary>
-    public partial class BaseService
+    public partial class BaseService : IDisposable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseService" /> class.
@@ -53,7 +53,10 @@ namespace FusionDirectorPlugin.Api
             this.FusionDirector = fusionDirector;
             this.ApiLogger = new FusionDirectorLogger(fusionDirector.HostIP).Api;
             this.httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(120) };
+            this.httpClient.DefaultRequestHeaders.ConnectionClose = true;
             this.httpClient.DefaultRequestHeaders.Add("Authorization", this.BaseAuthStr);
+
+            // ServicePointManager.DefaultConnectionLimit = 2;
         }
 
         /// <summary>
@@ -204,6 +207,14 @@ namespace FusionDirectorPlugin.Api
                 replacement,
                 RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Singleline);
             return newJsonData;
+        }
+
+        public void Dispose()
+        {
+            if (this.httpClient != null)
+            {
+                this.httpClient.Dispose();
+            }
         }
     }
 }

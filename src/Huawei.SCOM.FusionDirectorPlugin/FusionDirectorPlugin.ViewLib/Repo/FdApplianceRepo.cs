@@ -89,9 +89,11 @@ namespace FusionDirectorPlugin.ViewLib.Repo
                     }
                     try
                     {
-                        var client = new FdClient(appliance);
-                        var result = await client.GetApplianceVersion();
-                        appliance.DirectorVersion = result.CurrentVersion;
+                        using (var client = new FdClient(appliance))
+                        {
+                            var result = await client.GetApplianceVersion();
+                            appliance.DirectorVersion = result.CurrentVersion;
+                        }
                     }
                     catch (Exception e)
                     {
@@ -198,9 +200,10 @@ namespace FusionDirectorPlugin.ViewLib.Repo
                 {
                     return validateResult;
                 }
-
-                var client = new FdClient(appliance);
-                return await client.TestCredential();
+                using (var client = new FdClient(appliance))
+                {
+                    return await client.TestCredential();   
+                }
             }
             catch (Exception ex)
             {
@@ -222,20 +225,22 @@ namespace FusionDirectorPlugin.ViewLib.Repo
                 {
                     return validateResult;
                 }
-                var client = new FdClient(appliance);
-
-                var result = await client.TestCredential();
-                if (!result.Success)
+                using (var client = new FdClient(appliance))
                 {
-                    return result;
+                    var result = await client.TestCredential();
+                    if (!result.Success)
+                    {
+                        return result;
+                    }
+
+                    var addResult = await FdApplianceConnector.Instance.Add(appliance);
+                    if (addResult.Success)
+                    {
+                        await this.LoadAll();
+                    }
+                    return addResult;
                 }
 
-                var addResult = await FdApplianceConnector.Instance.Add(appliance);
-                if (addResult.Success)
-                {
-                    await this.LoadAll();
-                }
-                return addResult;
             }
             catch (Exception ex)
             {
@@ -260,11 +265,13 @@ namespace FusionDirectorPlugin.ViewLib.Repo
 
                 if (isUpdateCredential)//修改了密码
                 {
-                    var client = new FdClient(appliance);
-                    var result = await client.TestCredential();
-                    if (!result.Success)
+                    using (var client = new FdClient(appliance))
                     {
-                        return result;
+                        var result = await client.TestCredential();
+                        if (!result.Success)
+                        {
+                            return result;
+                        }
                     }
                 }
                 else
@@ -278,11 +285,13 @@ namespace FusionDirectorPlugin.ViewLib.Repo
                     if (oldFd.Port != appliance.Port) //修改了端口
                     {
                         appliance.LoginPd = oldFd.LoginPd;
-                        var client = new FdClient(appliance);
-                        var result = await client.TestCredential();
-                        if (!result.Success)
+                        using (var client = new FdClient(appliance))
                         {
-                            return result;
+                            var result = await client.TestCredential();
+                            if (!result.Success)
+                            {
+                                return result;
+                            }
                         }
                     }
                 }

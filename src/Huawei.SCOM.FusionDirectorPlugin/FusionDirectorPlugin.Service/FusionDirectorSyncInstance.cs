@@ -480,6 +480,12 @@ namespace FusionDirectorPlugin.Service
             this.keepEventTimer.Stop();
             this.AlarmQueue.Clear();
             this.pollingPerformanceTimer.Stop();
+
+            this.eventService.Dispose();
+            this.enclosureService.Dispose();
+            this.fusionDirectorService.Dispose();
+            this.nodePoolService.Dispose();
+            this.metricsService.Dispose();
         }
 
         /// <summary>
