@@ -53,7 +53,8 @@ namespace FusionDirectorPlugin.Api
             this.FusionDirector = fusionDirector;
             this.ApiLogger = new FusionDirectorLogger(fusionDirector.HostIP).Api;
             this.httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(120) };
-            this.httpClient.DefaultRequestHeaders.ConnectionClose = true;
+            // this.httpClient.DefaultRequestHeaders.ConnectionClose = true;
+            this.httpClient.DefaultRequestHeaders.Add("Connection", "close");
             this.httpClient.DefaultRequestHeaders.Add("Authorization", this.BaseAuthStr);
 
             // ServicePointManager.DefaultConnectionLimit = 2;

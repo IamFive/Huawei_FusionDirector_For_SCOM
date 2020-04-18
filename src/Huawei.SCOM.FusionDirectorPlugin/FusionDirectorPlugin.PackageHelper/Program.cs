@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 //MIT license for more detail.
 //*************************************************************************  
-﻿// ***********************************************************************
+// ***********************************************************************
 // Assembly         : FusionDirectorPlugin.PackageHelper
 // Author           : yayun
 // Created          : 12-25-2018
@@ -734,8 +734,10 @@ namespace FusionDirectorPlugin.PackageHelper
                     {
                         try
                         {
-                            var eventService = new EventService(fusionDirector);
-                            eventService.DeleteGivenSubscriptions(fusionDirector.SubscribeId);
+                            using (EventService eventService = new EventService(fusionDirector))
+                            {
+                                eventService.DeleteGivenSubscriptions(fusionDirector.SubscribeId);
+                            }
                         }
                         catch (Exception ex)
                         {

@@ -100,6 +100,9 @@ namespace FusionDirectorPlugin.Service
 
         public void UpdateFusionDirector(FusionDirector fusionDirector)
         {
+            // TODO(qianbiao.ng) can we dispose clients directly here? what if it's used by other threads?
+            // this.DisposeFusionDirectorClients();
+
             this.FusionDirector = fusionDirector;
             this.enclosureService = new EnclosureService(fusionDirector);
             this.fusionDirectorService = new FusionDirectorService(fusionDirector);
@@ -480,12 +483,16 @@ namespace FusionDirectorPlugin.Service
             this.keepEventTimer.Stop();
             this.AlarmQueue.Clear();
             this.pollingPerformanceTimer.Stop();
+            DisposeFusionDirectorClients();
+        }
 
-            this.eventService.Dispose();
-            this.enclosureService.Dispose();
-            this.fusionDirectorService.Dispose();
-            this.nodePoolService.Dispose();
-            this.metricsService.Dispose();
+        private void DisposeFusionDirectorClients()
+        {
+            this.eventService?.Dispose();
+            this.enclosureService?.Dispose();
+            this.fusionDirectorService?.Dispose();
+            this.nodePoolService?.Dispose();
+            this.metricsService?.Dispose();
         }
 
         /// <summary>

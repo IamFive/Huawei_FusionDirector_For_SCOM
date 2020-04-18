@@ -54,7 +54,8 @@ namespace FusionDirectorPlugin.ViewLib.Client
             this.Appliance = fusionDirector;
             this.httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
             this.httpClient.DefaultRequestHeaders.Add("Authorization", this.BaseAuthStr);
-            this.httpClient.DefaultRequestHeaders.ConnectionClose = true;
+            // this.httpClient.DefaultRequestHeaders.ConnectionClose = true;
+            this.httpClient.DefaultRequestHeaders.Add("Connection", "close");
 
             ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
             {
