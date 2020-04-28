@@ -387,7 +387,7 @@ namespace FusionDirectorPlugin.Service
         private void RunPerformanceCollectTask()
         {
             logger.Polling.Info($"RunPerformanceCollectTask.");
-            this.pollingPerformanceTimer = new Timer(10 * 60 * 1000)
+            this.pollingPerformanceTimer = new Timer(30 * 60 * 1000)
             {
                 Enabled = true,
                 AutoReset = true,
