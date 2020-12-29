@@ -1174,7 +1174,7 @@ namespace FusionDirectorPlugin.Service
                 return sslPolicyErrors == SslPolicyErrors.None || sslPolicyErrors == SslPolicyErrors.RemoteCertificateNameMismatch;
             };
             //兼容所有ssl协议
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)(MySecurityProtocolType.Tls12 | MySecurityProtocolType.Tls11 | MySecurityProtocolType.Tls | MySecurityProtocolType.Ssl3);
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType) MySecurityProtocolType.Tls12;
             ServicePointManager.DefaultConnectionLimit = 1000;
         }
 

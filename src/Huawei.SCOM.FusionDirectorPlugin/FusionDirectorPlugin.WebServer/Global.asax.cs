@@ -48,7 +48,7 @@ namespace FusionDirectorPlugin.WebServer
             {
                 return sslPolicyErrors == SslPolicyErrors.None || sslPolicyErrors == SslPolicyErrors.RemoteCertificateNameMismatch;
             };
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)(MySecurityProtocolType.Tls12 | MySecurityProtocolType.Tls11 | MySecurityProtocolType.Tls | MySecurityProtocolType.Ssl3);
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType) MySecurityProtocolType.Tls12;
             NotifyClient.Instance.Init();
             var setting = new JsonSerializerSettings();
             JsonConvert.DefaultSettings = () =>
